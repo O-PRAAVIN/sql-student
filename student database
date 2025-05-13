@@ -1,0 +1,45 @@
+-- Create database
+CREATE DATABASE StudentDB;
+USE StudentDB;
+
+-- Create Students table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Age INT,
+    Major VARCHAR(50)
+);
+
+-- Create Courses table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseName VARCHAR(100),
+    Instructor VARCHAR(100)
+);
+
+-- Create Enrollments table
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID INT,
+    CourseID INT,
+    Grade CHAR(1),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Insert sample students
+INSERT INTO Students (FirstName, LastName, Email, Age, Major) VALUES
+('Alice', 'Johnson', 'alice.j@example.com', 20, 'Computer Science'),
+('Bob', 'Smith', 'bob.s@example.com', 21, 'Mathematics');
+
+-- Insert sample courses
+INSERT INTO Courses (CourseName, Instructor) VALUES
+('Database Systems', 'Dr. Brown'),
+('Data Structures', 'Prof. Green');
+
+-- Insert sample enrollments
+INSERT INTO Enrollments (StudentID, CourseID, Grade) VALUES
+(1, 1, 'A'),
+(2, 2, 'B');
